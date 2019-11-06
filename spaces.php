@@ -7,7 +7,7 @@ class SpacesConnect {
   Available under MIT License ( https://opensource.org/licenses/MIT )
   */
 
-    function __construct($access_key, $secret_key, $spaceName = "", $region = "nyc3", $host = "digitaloceanspaces.com") {
+    function __construct($access_key, $secret_key, $spaceName = "", $region = "nyc3", $signature_version = 'v4-unsigned-body', $host = "digitaloceanspaces.com") {
 
         //Only pulled if an AWS class doesn't already exist.
         $non_composer_aws_lib = dirname(__FILE__)."/aws/autoloader.php";
@@ -36,7 +36,7 @@ class SpacesConnect {
                       'secret' => $secret_key,
                   ),
             'bucket_endpoint' => true,
-            'signature_version' => 'v4-unsigned-body'
+            'signature_version' => $signature_version
           ));
         } catch (\Exception $e) {
           $this->HandleAWSException($e);
