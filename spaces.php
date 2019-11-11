@@ -93,7 +93,7 @@ class SpacesConnect {
     /*
       Changes your current Space, Region and/or Host.
     */
-    function SetSpace($spaceName, $region = "", $host = "") {
+    function SetSpace($spaceName, $region = "", $signature_version = 'v4-unsigned-body', $host = "") {
         if(empty($region)) { $region = $this->region; }
         if(empty($host)) { $host = $this->host; }
         if(!empty($spaceName)) {
@@ -113,7 +113,7 @@ class SpacesConnect {
                       'secret' => $this->secret_key,
                   ),
             'bucket_endpoint' => true,
-            'signature_version' => 'v4-unsigned-body'
+            'signature_version' => $signature_version
           ));
           return $this->ObjReturn(true);
         } catch (\Exception $e) {
