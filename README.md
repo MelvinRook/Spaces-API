@@ -1,14 +1,30 @@
-# Spaces-API
+# Spaces-API compliant with AWS v2-signatures
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FSociallyDev%2FSpaces-API.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FSociallyDev%2FSpaces-API?ref=badge_shield)
 
-An API wrapper for DigitalOcean's Spaces object storage designed for easy use. 
+An API wrapper for DigitalOcean's Spaces object storage designed for easy use.
+
+> **Note**: This version of the API wrapper is patched up to work AWS v2-signatures, in order to be able to use special characters in the file name (i.e. the @-sign).
+
+Related issues on DigitalOcean:
+* https://www.digitalocean.com/community/questions/signaturedoesnotmatch-error-with-special-characters-in-the-file-name
+* https://www.digitalocean.com/community/questions/spaces-php-sdk-changing-acl-error-when-filepath-or-file-contains-symbols-like-an-at
 
 
 ### Installation
 * **Using Composer**:
-```sh
-composer require sociallydev/spaces-api:dev-master
+
+Update composer.json and add this repository:
 ```
+"repositories":[
+{
+    "type": "vcs",
+    "url": "git@github.com:MelvinRook/Spaces-API.git"
+}
+],
+```
+Require the original dependency:
+
+```"sociallydev/spaces-api": "dev-master",```
 
 ### Connecting
 ```php
