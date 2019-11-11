@@ -12,12 +12,9 @@ class SpacesConnect {
         //Only pulled if an AWS class doesn't already exist.
         $non_composer_aws_lib = dirname(__FILE__)."/aws/autoloader.php";
 
-        if(!empty($spaceName)) {
-          $endpoint = "https://".$spaceName.".".$region.".".$host;
-        }
-        else {
-          $endpoint = "https://".$region.".".$host;
-        }
+        // Set endpoint
+        $endpoint = "https://".$region.".".$host;
+
         if(!class_exists('Aws\S3\S3Client')) {
            if(file_exists($non_composer_aws_lib)) {
              require_once($non_composer_aws_lib);
@@ -97,12 +94,14 @@ class SpacesConnect {
         if(empty($region)) { $region = $this->region; }
         if(empty($host)) { $host = $this->host; }
         if(!empty($spaceName)) {
-          $endpoint = "https://".$spaceName.".".$region.".".$host;
           $this->space = $spaceName;
         } else {
-          $endpoint = "https://".$region.".".$host;
           $this->space = "";
         }
+
+        // Set endpoint
+        $endpoint = "https://".$region.".".$host;
+
         try {
           $this->client = Aws\S3\S3Client::factory(array(
             'region' => $region,
