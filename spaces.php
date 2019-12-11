@@ -263,7 +263,7 @@ class SpacesConnect {
         if($access == "public") {
           $access = "public-read";
         }
-        $is_file = strlen($pathToFile) <= PHP_MAXPATHLEN && is_file($pathToFile);
+        $is_file = strlen($pathToFile) <= PHP_MAXPATHLEN && $pathToFile[0] == '/' && is_file($pathToFile);
         if(!$is_file){
           $file = $pathToFile;
         }else{
